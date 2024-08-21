@@ -6,5 +6,6 @@ class Solution {
      */
     function removeDuplicates(&$nums) {
         $nums=array_unique($nums);
+
     }
 }
