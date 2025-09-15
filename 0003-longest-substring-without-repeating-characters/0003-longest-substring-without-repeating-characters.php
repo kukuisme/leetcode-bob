@@ -5,21 +5,28 @@ class Solution {
      * @return Integer
      */
     function lengthOfLongestSubstring($s) {
-        $a=str_split($s);
-        $b=[];
-        $max=0;
-        foreach($a as $key=>$d){
-            if(in_array($d,$b)){
-                $ord_key = array_search($d,$b)+1;
-                array_splice($b,0,$ord_key);
-                array_push($b,$d);
-                $max = max($max,count($b));
-              
-            }else{
-                array_push($b,$d);
-                $max = max($max,count($b)); 
+        $n =strlen($s);
+        $start = 0;
+        $maxLen = 0;
+        $seen=[];
+        $longest="";
+        
+        for($end= 0 ; $end < $n ; $end++){
+            $char = $s[$end];
+
+            if(isset($seen[$char]) && $seen[$char] >= $start){
+                $start = $seen[$char] + 1;
+            }
+
+            $seen[$char] = $end;
+            $curLen = $end - $start + 1 ;
+
+            if($curLen > $maxLen){
+                $maxLen = $curLen;
+                $longest = substr($s,$start,$curLen);
             }
         }
-       return $max;
+        $num = strlen($longest);
+        return $num;
     }
 }
