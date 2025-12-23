@@ -5,14 +5,16 @@ class Solution {
      * @param Integer $target
      * @return Integer[]
      */
-    function twoSum($nums, $target) {
-        $map=[];
-        foreach($nums as $key=>$num){
-            $new_number = $target-$num;
-            if(isset($map[$new_number])){
-                return [$map[$new_number],$key];
+     
+    function twoSum($nums, $target){
+        $numMap=[];
+        foreach($nums as $i => $num){
+            $complement = $target - $num;
+            if(isset($numMap[$complement])){
+                return [$numMap[$complement],$i];
             }
-            $map[$nums[$key]]=$key;
+            $numMap[$num]=$i;
         }
+        return [];
     }
 }
