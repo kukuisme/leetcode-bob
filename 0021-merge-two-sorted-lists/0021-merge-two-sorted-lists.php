@@ -17,24 +17,24 @@ class Solution {
      * @return ListNode
      */
     function mergeTwoLists($list1, $list2) {
-        $dummy = new ListNode(0);
-        $current = $dummy;
+      $current = $dummy = new ListNode(0);
         while($list1 !== null && $list2 !== null ){
-            if($list1->val < $list2->val){
+            if($list1->val < $list2->val ){
                 $current->next = $list1;
                 $list1 = $list1->next;
             }else{
                 $current->next = $list2;
                 $list2 = $list2->next;
-            }
-            $current = $current->next ;
+            }  
+            $current = $current->next;          
         }
+
         if($list1 !== null){
             $current->next = $list1;
         }else{
             $current->next = $list2;
-
         }
+
         return $dummy->next;
     }
 }
