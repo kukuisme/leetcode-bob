@@ -6,12 +6,15 @@ class Solution {
      */
     function maxProfit($prices) {
         $max = 0;
-        $min = $prices[0];
-        for ($i=1 ; $i< count($prices) ; $i++){
-            if($prices[$i] - $min > $max) $max = $prices[$i] - $min;
-            if($prices[$i]  < $min )$min = $prices[$i]; 
+        $min = PHP_INT_MAX;
+        foreach($prices as $price){
+            if($price < $min){
+                $min = $price;
+                continue;
+            }else if($price-$min>$max){
+                $max = $price -$min ;
+            }
         }
         return $max;
-
     }
 }
